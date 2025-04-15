@@ -1,0 +1,167 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#logo{
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: auto;
+    padding-top: 10px;
+}
+
+/*Navigation Bar*/
+#navigation-bar{
+    display: flex;
+    justify-content: center;
+    background-color:  rgb(26, 29, 170);
+}
+
+#navigation-bar ul{
+    display: flex;
+    list-style: none;
+}
+
+#navigation-bar ul li{
+    margin: 50px;
+}
+
+#navigation-bar ul li a{
+    color: black;
+    font-size: x-large;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: rgb(181, 219, 255);
+    text-decoration: none;
+}
+
+#navigation-bar ul li a:hover{
+    background-color: rgb(116, 180, 223);
+}
+
+/*Form*/
+form{
+    display: flex;
+    flex-direction: column;
+	align-items: flex-start;
+	max-width: 700px;
+    width: 90%;
+    margin: 0 auto;
+    font-size: 1.3rem;
+    padding: 4rem;
+    box-sizing: border-box;
+}
+
+input, select, textarea{
+	width: 100%;
+	padding: 0.6rem;
+	margin-top: 0.5rem;
+	margin-bottom: 1.5rem;
+	border-radius: 0.25em;
+}
+
+.input-container{
+    padding-bottom: 20px;
+}
+
+input[type="date"]{
+    font-size: large;
+}
+
+.ratings{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.ratings{
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    display: inline-flex;
+  }
+  
+.ratings input[type="radio"]{
+    display: none;
+}
+  
+.ratings input[type="radio"]:checked ~ label{
+    color: rgb(249, 231, 33);
+}
+
+button{
+	padding: 1rem 2rem;
+    margin-top: 30px;
+    font-size: larger;
+	background-color: rgb(181, 219, 255);
+	color: black;
+	border: none;
+	border-radius: 0.3125em;
+	cursor: pointer;
+    
+}
+
+button:hover{
+	background-color: rgb(116, 180, 223);
+}
+
+.error-message{
+    color: red;
+    display: block;
+}
+
+footer{
+    background-color:  rgb(26, 29, 170);
+    color: white;
+    font-size: larger;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+@media screen and (max-width: 700px){
+    header{
+        display: flex;
+    }
+
+    #logo{
+        justify-content: right;
+        margin-right: 40px;
+        flex: 1;
+        display: flex;
+    }
+
+    #navigation-bar{
+        position: absolute;
+        margin-top: 30px;
+        background-color: white;
+    }
+
+    #navigation-bar ul{
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+    }
+
+    #navigation-bar ul li{
+        margin: 10px;
+    }
+
+    #navigation-bar ul li a{
+        background: none;
+        text-decoration: none;
+    }
+
+    #navigation-bar ul li a:hover{
+        background: none;
+        text-decoration: underline;
+    }
+    
+    form{
+        background-color: rgb(236, 242, 250);
+    }
+}
