@@ -1,5 +1,7 @@
 const form = document.getElementById("volunteerForm");
 
+let totalHours = 0;
+
 form.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -9,7 +11,38 @@ form.addEventListener("submit", (event) => {
     }
 
     if (validateForm()){
-        form.submit(); 
+        const formInfo = {charityName: document.getElementById("charityName").value,
+            hours: Number(document.getElementById("hours").value),
+            date: document.getElementById("volunteerDate").value,
+            rating: document.querySelector('input[name="rating"]:checked').value};
+
+        totalHours += formInfo.hours;
+
+        let storedInfo = JSON.parse(localStorage.getItem('logs')) || [];
+
+        const tableBody = document.querySelector("tbody");
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${formInfo.charityName}</td>
+        <td>${formInfo.hours}</td>
+        <td>${formInfo.date}</td>
+        <td>${formInfo.rating}</td>
+        <td><button class="delete-btn">Delete</button></td>`;
+        tableBody.appendChild(row);
+
+        row.querySelector(".delete-btn").addEventListener("click", () => {
+            row.remove();
+            totalHours -= formInfo.hours;
+            storedInfo = storedInfo.filter(item => item.charityName !== formInfo.charityName || 
+                item.hours !== formInfo.hours || 
+                item.date !== formInfo.date || 
+                item.rating !== formInfo.rating);
+            localStorage.setItem('logs', JSON.stringify(storedInfo));
+            document.getElementById("totalHours").textContent = `Total Hours Volunteered: ${totalHours}`;
+        });
+        storedInfo.push(formInfo);
+        localStorage.setItem('logs', JSON.stringify(storedInfo));
+        document.getElementById("totalHours").textContent = `Total Hours Volunteered: ${totalHours}`;
+        form.reset();
     } 
     else{
         console.error("Form has errors"); 
@@ -36,6 +69,7 @@ function validateForm(){
     const volunteerDate = date.value;
     if(!volunteerDate){
         showInputError(date, "Enter a valid date.")
+        isFormValid = false;
     }
     else{
         const givenDate = new Date(volunteerDate);
@@ -67,7 +101,31 @@ function showInputError(inputElement, message){
     container.appendChild(errorDisplay);
 }
 
-function escapeHTML(input){
-    console.log("Form successfully submitted.")
-    return input
-}
+document.addEventListener("DOMContentLoaded", () => {
+    totalHours = 0;
+    let storedInfo = JSON.parse(localStorage.getItem('logs')) || [];
+
+    storedInfo.forEach(item =>{
+        const tableBody = document.querySelector("tbody");
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${item.charityName}</td>
+        <td>${item.hours}</td>
+        <td>${item.date}</td>
+        <td>${item.rating}</td>
+        <td><button class="delete-btn">Delete</button></td>`;
+        tableBody.appendChild(row);
+
+        row.querySelector(".delete-btn").addEventListener("click", () => {
+            row.remove();
+            totalHours -= item.hours;
+            storedInfo = storedInfo.filter(storedItem => storedItem.charityName !== item.charityName || 
+                storedItem.hours !== item.hours || 
+                storedItem.date !== item.date || 
+                storedItem.rating !== item.rating);
+            localStorage.setItem('logs', JSON.stringify(storedInfo));
+            document.getElementById("totalHours").textContent = `Total Hours Volunteered: ${totalHours}`;
+        });
+        totalHours += item.hours;
+    });
+    document.getElementById("totalHours").textContent = `Total Hours Volunteered: ${totalHours}`;
+});

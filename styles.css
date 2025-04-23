@@ -93,7 +93,7 @@ input[type="date"]{
     color: rgb(249, 231, 33);
 }
 
-button{
+#submit-btn{
 	padding: 1rem 2rem;
     margin-top: 30px;
     font-size: larger;
@@ -121,6 +121,59 @@ footer{
     width: 100%;
     padding: 10px;
     text-align: center;
+}
+
+/*Table*/
+#hoursTable{
+    font-size: large;
+    margin-left: 30px;
+    padding-bottom: 20px;
+}
+
+table{
+    width: 80%;
+    border-collapse: collapse;
+}
+
+td, th{
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    border: 1px solid black;
+}
+  
+th{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: rgb(53, 44, 149);
+    color: white;
+    font-size: large;
+}
+
+td{
+    font-size: large;
+}
+
+td:last-child{
+    border: none;
+}
+
+button{
+    padding: 1rem 2rem;
+    margin: 10px;
+    font-size: large;
+	background-color: rgb(181, 219, 255);
+	color: black;
+	border: none;
+	border-radius: 0.3125em;
+	cursor: pointer;
+}
+
+/*Summary*/
+#summary{
+    font-size: large;
+    margin-left: 30px;
+    padding-bottom: 20px;
 }
 
 @media screen and (max-width: 700px){
@@ -163,5 +216,10 @@ footer{
     
     form{
         background-color: rgb(236, 242, 250);
+    }
+
+    #hoursTable{
+        width: 500px;
+        overflow-x: auto;
     }
 }
